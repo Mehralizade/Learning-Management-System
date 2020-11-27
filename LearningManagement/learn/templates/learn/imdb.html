@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>GEO API</h2>
+    <form method="POST" action='{% url "imdb" %}'id='signup'>
+      {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Name of the movie</label>
+          <input type="text" name='movieName' class="form-control" id="exampleFormControlInput1" placeholder="Fill in here..">
+        </div>
+        
+        
+        </div>
+        <button type="submit" class="btn btn-primary">Enter</button>
+      </form>
+        
+  <p><strong>{{ FilmName }}</strong></p>
+  <p><strong>{{ FilmPlot }}</strong></p>
+</body>
+</html>
