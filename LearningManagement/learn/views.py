@@ -88,3 +88,32 @@ def imdb(request):
            # 'title': movieInfo['summary'],
             #'info':movieInfo['Plot']
        })
+
+def home3(request):
+    if request.method == 'POST':
+        technologyName = request.POST['techName']
+        sentenceNumber = request.POST['sentenceNumber']
+        language = request.POST['language']
+        wikipedia.set_lang(language.lower()[:2])
+        response = wikipedia.page(technologyName).url
+        
+        string = 'http://api.meaningcloud.com/summarization-1.0?key=7341fb6a1d0dbba65050847d3b9054b1&sentences='
+        string = string +sentenceNumber
+        string = string + "&url="
+        string = string + response
+        information = requests.get(string)
+        movieInfo = information.json()
+        
+        return render(request, 'learn/home3.html', {
+        
+            'title': movieInfo['summary'],
+            #'info':movieInfo['Plot']
+        })
+    else:
+        return render(request, 'learn/home3.html', {
+            
+           # 'title': movieInfo['summary'],
+            #'info':movieInfo['Plot']
+        })
+
+
