@@ -3,8 +3,9 @@ import requests
 import wikipedia
 import string
 from youtube_transcript_api import YouTubeTranscriptApi
-
-
+import requests
+import json
+import time
 # Create your views here.
 def home(request):
     if request.method == 'POST':
@@ -108,6 +109,59 @@ def home3(request):
         )
     
     return render(request, 'learn/home3.html', {
+            
+           # 'title': movieInfo['summary'],
+            #'info':movieInfo['Plot']
+       })
+def home4(request):
+    if request.method == 'POST': #checking whether something is posted in html template 
+        name = request.POST['movieName'] # getting the data from html form -- movieName is the name parameter of the input box where we get the data for the movie name
+        # string = 'https://youtube.googleapis.com/youtube/v3/search?q=' # api endpoint url
+        # string = string + name # modifying api endpoint url to include the name of the chosen movie in the html form
+        
+        # string = string +  "&key=AIzaSyC2i5kzHio67jG0c5hUEEhtco9tkPSXDG0"
+        string='https://youtube.googleapis.com/youtube/v3/captions/%22f2Y1U8UhWog9F3-CWmWX_4Arl0HehWEiVewOopK_I38%3D%22?key=AIzaSyC2i5kzHio67jG0c5hUEEhtco9tkPSXDG0'
+        movieInfo = requests.get(string) # getting data from api
+        movieInfo = movieInfo.json() 
+
+        # render parameters: request, corresponding html template, values to put in html placeholders in double brackets
+        return render(
+            request, 'learn/home4.html', {
+                'FilmName':movieInfo
+            }
+        )
+    
+    return render(request, 'learn/home4.html', {
+            
+           # 'title': movieInfo['summary'],
+            #'info':movieInfo['Plot']
+       })
+def ebooks(request):
+    if request.method == 'POST': #checking whether something is posted in html template 
+        name = request.POST['movieName'] # getting the data from html form -- movieName is the name parameter of the input box where we get the data for the movie name
+        string = 'https://www.googleapis.com/books/v1/volumes?q=' # api endpoint url
+        # string = 'https://youtube.googleapis.com/youtube/v3/captions/f2Y1U8UhWog9F3-CWmWX_4Arl0HehWEiVewOopK_I38%3D?key=AIzaSyC2i5kzHio67jG0c5hUEEhtco9tkPSXDG0'
+        string = string + name # modifying api endpoint url to include the name of the chosen movie in the html form
+        
+        # string = string +  "&key=AIzaSyC2i5kzHio67jG0c5hUEEhtco9tkPSXDG0"
+        movieInfo = requests.get(string) # getting data from api
+        movieInfo = movieInfo.json() 
+        a=[]
+        
+        movieInfo = movieInfo['items']
+        # [1]['volumeInfo']['averageRating']
+        # for elem in movieInfo:
+        #     a.append(elem['volumeInfo']['averageRating'])
+        # movieInfo=a
+        # 3, 4, 3.5, 4.5, 4, 4, 4, 4, 4, 2
+        # render parameters: request, corresponding html template, values to put in html placeholders in double brackets
+        return render(
+            request, 'learn/ebooks.html', {
+                'FilmName':movieInfo
+            }
+        )
+    
+    return render(request, 'learn/ebooks.html', {
             
            # 'title': movieInfo['summary'],
             #'info':movieInfo['Plot']
