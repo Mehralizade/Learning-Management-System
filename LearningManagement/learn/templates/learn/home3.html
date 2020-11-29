@@ -7,31 +7,19 @@
 </head>
 <body>
     <h2>GEO API</h2>
-    <form method="POST" action='{% url "home2" %}'id='signup'>
+    <form method="POST" action='{% url "home3" %}'id='signup'>
       {% csrf_token %}
         <div class="form-group">
-          <label for="exampleFormControlInput1">What framework/technology/concept you want to learn?</label>
-          <input type="text" name='techName' class="form-control" id="exampleFormControlInput1" placeholder="Fill in here..">
+          <label for="exampleFormControlInput1">youtubecategory</label>
+          <input type="text" name='movieName' class="form-control" id="exampleFormControlInput1" placeholder="Fill in here..">
         </div>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Put url of the video</label>
-          <input type="text" name='videoUrl' class="form-control" id="exampleFormControlInput1" placeholder="Fill in here..">
-
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Select the language</label>
-          <select name='language' class="form-control" id="exampleFormControlSelect1">
-            <option>Azerbaycan dili</option>
-            <option>English</option>
-            <option>Russian</option>
-            <option>French</option>
-            
-          </select>
+        
+        
         </div>
         <button type="submit" class="btn btn-primary">Enter</button>
       </form>
         
-  <p><strong>{{ title }}</strong></p>
-  <p><strong>{{ text }}</strong></p>
+  <p><strong>{{ FilmName }}</strong></p>
+  <p><strong>{{ FilmPlot }}</strong></p>
 </body>
 </html>

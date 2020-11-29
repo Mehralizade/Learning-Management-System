@@ -22,6 +22,6 @@ urlpatterns = [
     path('',views.home, name='home'),
     path('home2',views.home2, name='home2'),
     path('imdb', views.imdb, name='imdb'), # Url for the page where we process the api, 1st parameter: url name, second parameter: function in the views.py where the api processing is implemented, third name: way to reach page in html template.
-
+    path('home3', views.home3, name='home3'),
 
 ]
