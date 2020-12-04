@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from learn import views
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +27,5 @@ urlpatterns = [
     path('home3', views.home3, name='home3'),
     path('home4', views.home4, name='home4'),
     path('ebooks', views.ebooks, name='ebooks'),
-
+    path('youtubeplay',views.youtubeplay, name='youtubeplay'),
 ]

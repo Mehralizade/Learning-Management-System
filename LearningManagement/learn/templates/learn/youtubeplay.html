@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+    {% load static %}
+ 
+<head>
+        <title>
+            Search video blyat
+        </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        
+        <div class="container">
+            <br>
+            <h1>
+                search video
+            </h1>
+            <br><br> 
+            <form id="form">
+                <div class="form-group">
+                    <input type="text" name="videoSearch" class="form-control" id="search">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-danger"value="Search">
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="videos">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+  
+        <!-- <script src="static/js/script.js" type='text/javascript'
+        ></script> -->
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+$(document).ready(function(){
+
+var API_KEY ="AIzaSyC2i5kzHio67jG0c5hUEEhtco9tkPSXDG0"
+
+var video = ""
+
+
+$("#form").submit(function(event){
+    event.preventDefault()
+    alert("form is submitted")
+
+
+    
+    var search = $("#search").val()
+
+    videoSearch(API_KEY,search,4)
+
+})
+
+function videoSearch(key,search,maxResults) {
+    $("#videos").empty()
+
+    $.get("https://www.googleapis.com/youtube/v3/search?key="+ key
+     + "&type=video&part=snippet&maxResults=" + maxResults + "&q=" + search,function(data){
+         console.log(data)
+         data.items.forEach(item => {
+             
+            var aga =  $("#search").val()
+            //var kdir = aga.split(",");
+                video=`
+            <iframe width="420" height="315"  
+                src="http://www.youtube.com/embed/${item.id.videoId}" frameborder="0" allowfullscreen></iframe>` 
+
+            $("#videos").append(video)
+    
+            // var fortesting="eIrMbAQSU34"
+            // var i;
+            // for (i = 0; i < kdir.length; i++) {
+            //     video=`
+            // <iframe width="420" height="315"  
+            //     src="http://www.youtube.com/embed/${sikdir[i]}" frameborder="0" allowfullscreen></iframe>` 
+
+            // $("#videos").append(video)
+    
+            //                     }
+
+            // kdir.forEach(item=>{
+            //     video=`
+            // <iframe width="420" height="315"  
+            //     src="http://www.youtube.com/embed/${item}" frameborder="0" allowfullscreen></iframe>` 
+
+            // $("#videos").append(video)
+            // })
+            
+         });
+           
+
+
+     }) 
+    
+
+    
+ 
+
+}
+
+})
+    
+        </script>
+    </body>
+    
+</html>

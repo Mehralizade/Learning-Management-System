@@ -100,6 +100,13 @@ def home3(request):
         string = string +  "&key=AIzaSyC2i5kzHio67jG0c5hUEEhtco9tkPSXDG0"
         movieInfo = requests.get(string) # getting data from api
         movieInfo = movieInfo.json() 
+        movieInfo = movieInfo["items"]
+        a=[]
+        for elem in movieInfo:
+            a.append(elem["id"]["videoId"])
+        # for elem in a:
+        #     elem=elem.strip()
+        movieInfo=a
 
         # render parameters: request, corresponding html template, values to put in html placeholders in double brackets
         return render(
@@ -162,6 +169,14 @@ def ebooks(request):
         )
     
     return render(request, 'learn/ebooks.html', {
+            
+           # 'title': movieInfo['summary'],
+            #'info':movieInfo['Plot']
+       })
+def youtubeplay(request):
+    
+    
+    return render(request, 'learn/youtubeplay.html', {
             
            # 'title': movieInfo['summary'],
             #'info':movieInfo['Plot']
