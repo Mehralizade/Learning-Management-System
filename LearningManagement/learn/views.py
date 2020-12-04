@@ -47,6 +47,21 @@ def home2(request):
          
             text = text +  ' '
         
+        url_for_translation = 'https://api.deepl.com/v2/translate?auth_key=1169a1dc-f264-c753-0772-f6f97e808be9&text=' + text + '&target_lang=DE'
+        r = requests.post(url_for_translation)
+        print(r.json())
+        #lets find the definition of word incredible
+        url_for_words = "https://wordsapiv1.p.rapidapi.com/words/incredible/definitions"
+
+        headers = {
+            'x-rapidapi-key': "884e268161msh1031990822f1d26p1373cdjsne6d04f63ae56",
+            'x-rapidapi-host': "wordsapiv1.p.rapidapi.com"
+            }
+
+        response_word = requests.request("GET", url_for_words, headers=headers)
+
+        print(response_word.text)
+
         string = 'http://api.meaningcloud.com/summarization-1.0?key=7341fb6a1d0dbba65050847d3b9054b1&sentences='
         string = string +'2'
         string = string + "&txt="
