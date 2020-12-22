@@ -69,17 +69,19 @@
     </div>
     
   </nav>
+    
         <div class="container" id='form2'>
-           
+            
             <h1>
-                Search Video and Video Summary
+                Search for trendy tech 
             </h1>
            
-            <form method="POST" action='{% url "youtubeplay" %}'>
+            <form method="POST" action='{% url "trends" %}'>
                 {% csrf_token %}
+                
                 <div class="form-group">
-                    <input type="text" name="videoSearch" class="form-control" id="search"  placeholder="enter keyword">
-                </div>
+
+                    
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Select the language</label>
                         <select name='language' class="form-control" id="exampleFormControlSelect1">
@@ -100,70 +102,53 @@
                           <option>5</option>
                         </select>
                       </div>
-                      
-                
-               
-                
-                    
-                
-                
-                <div class="form-group">
-                    <input type="submit" class="btn btn-danger" value="Search">
+                      <button type="submit" class="btn btn-primary">Enter</button>
                 </div>
             </form>
-           <!-- <div class="row">
-                <div class="col-md-12">
-                    <div id="videos">
-
-                    </div>
-                </div>-->
-              </div>
-               
-   {% for e in info %}
-<div class='container' id='videoList'>
-<div class='row'>
-<div class="col-sm-4">
-<iframe width="300" height="400"  
-src="http://www.youtube.com/embed/{{e.id.videoId}}" frameborder="0" allowfullscreen></iframe>
-</div>
-<div class="col-sm-6">
-
-
-<p><strong> </strong>{{e.snippet.title}}</p>
-
-
-<p><strong> </strong>{{e.contentDetails.duration}}</p>
-
-<a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Description</a>
-
-
-
-
-<div class="collapse multi-collapse" id="multiCollapseExample1">
-<div class="card card-body">
-<p>{{e.id2}}</p>
-
-</div>
-</div>
-
-
-
-
-<button class='btn btn-success'>Add to favorites</button>
-
-
-
-
-
-
-</div>
-</div>
-</div>
-{% endfor %}
-    </div>
-</div>
-
-            
+  
+          
+           {% for e in info %}
+           <div class='container' id='videoList'>
+           <div class='row'>
+           <div class="col-sm-4">
+           <iframe width="300" height="400"  
+           src="http://www.youtube.com/embed/{{e.id.videoId}}" frameborder="0" allowfullscreen></iframe>
+           </div>
+           <div class="col-sm-6">
+           
+           
+           <p><strong> </strong>{{e.snippet.title}}</p>
+           
+           
+           <p><strong> </strong>{{e.contentDetails.duration}}</p>
+           
+           <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Description</a>
+           
+           
+           
+           
+           <div class="collapse multi-collapse" id="multiCollapseExample1">
+           <div class="card card-body">
+           <p>{{e.id2}}</p>
+           
+           </div>
+           </div>
+           
+           
+           
+           
+           <button class='btn btn-success'>Add to favorites</button>
+           
+           
+           
+           
+           
+           
+           </div>
+           </div>
+           </div>
+           {% endfor %}
+            </div>
 
         </div>
   

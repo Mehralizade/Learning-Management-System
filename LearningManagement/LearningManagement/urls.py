@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from learn import views
 from django.conf.urls.static import static
-
+from machina import urls as machina_urls
+from django.contrib.auth import views as auth_views
+from machina.apps import forum_member
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +30,11 @@ urlpatterns = [
     path('home4', views.home4, name='home4'),
     path('ebooks', views.ebooks, name='ebooks'),
     path('youtubeplay',views.youtubeplay, name='youtubeplay'),
+    path('forum/', include(machina_urls)),
+    path('accounts/login/', auth_views.LoginView.as_view(template_name="learn/login.html"),name='login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(template_name="learn/logout.html"), name="logout"),
+    path('signup/', views.SignUp.as_view(), name="signup"),
+    path('trendySkills/', views.trendySkills, name="trends"),
+    path('userProfile/<int:pk>',forum_member.views.ForumProfileDetailView.as_view(),name='profile'),
+
 ]
