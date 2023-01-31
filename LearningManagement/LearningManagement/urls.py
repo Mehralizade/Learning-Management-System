@@ -24,17 +24,12 @@ from machina.apps import forum_member
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home, name='home'),
-    path('home2',views.home2, name='home2'),
-    path('imdb', views.imdb, name='imdb'), # Url for the page where we process the api, 1st parameter: url name, second parameter: function in the views.py where the api processing is implemented, third name: way to reach page in html template.
-    path('home3', views.home3, name='home3'),
-    path('home4', views.home4, name='home4'),
-    path('ebooks', views.ebooks, name='ebooks'),
-    path('youtubeplay',views.youtubeplay, name='youtubeplay'),
+    path('search_video',views.search_video, name='search_video'),
     path('forum/', include(machina_urls)),
     path('accounts/login/', auth_views.LoginView.as_view(template_name="learn/login.html"),name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(template_name="learn/logout.html"), name="logout"),
     path('signup/', views.SignUp.as_view(), name="signup"),
-    path('trendySkills/', views.trendySkills, name="trends"),
+    path('trendy_skills/', views.trendy_skills, name="trends"),
     path('userProfile/<int:pk>',forum_member.views.ForumProfileDetailView.as_view(),name='profile'),
 
 ]

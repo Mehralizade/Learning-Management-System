@@ -28,7 +28,7 @@
             <a id='trendButton' class="nav-link btn btn-outline-light my-2 my-sm-0"  href="{% url 'trends' %}">Trendy Skills <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active" >
-            <a  id='videoListButton' class="nav-link btn btn-outline-light my-2 my-sm-0"   href="{% url 'youtubeplay' %}">Videos <span class="sr-only">(current)</span></a>
+            <a  id='videoListButton' class="nav-link btn btn-outline-light my-2 my-sm-0"   href="{% url 'search_video' %}">Videos <span class="sr-only">(current)</span></a>
           </li>
           
       </ul>
@@ -156,76 +156,7 @@
         ></script> -->
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-$(document).ready(function(){
-
-var API_KEY ="AIzaSyC2i5kzHio67jG0c5hUEEhtco9tkPSXDG0"
-
-var video = ""
-
-
-$("#form").submit(function(event){
-    event.preventDefault()
-    alert("form is submitted")
-
-
-    
-    var search = $("#search").val()
-
-    videoSearch(API_KEY,search,4)
-
-})
-
-function videoSearch(key,search,maxResults) {
-    $("#videos").empty()
-
-    $.get("https://www.googleapis.com/youtube/v3/search?key="+ key
-     + "&type=video&part=snippet&maxResults=" + maxResults + "&q=" + search,function(data){
-         console.log(data)
-         data.items.forEach(item => {
-             
-            var aga =  $("#search").val()
-            //var kdir = aga.split(",");
-                video=`
-            <iframe width="420" height="315"  
-                src="http://www.youtube.com/embed/${item.id.videoId}" frameborder="0" allowfullscreen></iframe>` 
-
-            $("#videos").append(video)
-    
-            // var fortesting="eIrMbAQSU34"
-            // var i;
-            // for (i = 0; i < kdir.length; i++) {
-            //     video=`
-            // <iframe width="420" height="315"  
-            //     src="http://www.youtube.com/embed/${sikdir[i]}" frameborder="0" allowfullscreen></iframe>` 
-
-            // $("#videos").append(video)
-    
-            //                     }
-
-            // kdir.forEach(item=>{
-            //     video=`
-            // <iframe width="420" height="315"  
-            //     src="http://www.youtube.com/embed/${item}" frameborder="0" allowfullscreen></iframe>` 
-
-            // $("#videos").append(video)
-            // })
-            
-         });
-           
-
-
-     }) 
-    
-
-    
- 
-
-}
-
-})
-    
-        </script>
+        <script src="static/trends.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
